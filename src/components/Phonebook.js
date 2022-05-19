@@ -1,12 +1,20 @@
-const Phonebook = (props) => {
+const Phonebook = ({ persons, filter, deletePerson }) => {
   return (
     <>
-      {props.persons
-        .filter((person) => person.name.includes(props.filter))
+      {persons
+        .filter((person) => person.name.includes(filter))
         .map((person) => (
-          <p key={person.id}>
-            {person.name} - {person.number}
-          </p>
+          <div key={person.id}>
+            <p>
+              {person.name} - {person.number}
+              <span>
+                &nbsp;
+                <button onClick={() => deletePerson(person.name, person.id)}>
+                  delete
+                </button>
+              </span>
+            </p>
+          </div>
         ))}
     </>
   );
